@@ -1,0 +1,11 @@
+package com.vertasquad.tika;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class TikaDemoApplicationTests {
+    @Test
+    void contextLoads() {
+    }
+}
