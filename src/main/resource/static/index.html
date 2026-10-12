@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tika Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:system-ui,sans-serif;max-width:720px;margin:2rem auto;padding:0 1rem}
+  button{margin:.25rem .25rem .25rem 0;padding:.5rem 1rem}
+  pre{background:#111;color:#0f0;padding:1rem;white-space:pre-wrap;word-break:break-word;min-height:120px}
+</style>
+</head>
+<body>
+<h2>Apache Tika Demo</h2>
+<input type="file" id="f"><br><br>
+<button onclick="go('detect')">Detect</button>
+<button onclick="go('extract')">Extract</button>
+<button onclick="go('metadata')">Metadata</button>
+<pre id="out">Choose a file...</pre>
+<script>
+async function go(ep){
+  const file=document.getElementById('f').files[0];
+  if(!file){out.textContent='No file selected';return}
+  const fd=new FormData();fd.append('file',file);
+  const r=await fetch('/api/'+ep,{method:'POST',body:fd});
+  out.textContent=JSON.stringify(await r.json(),null,2);
+}
+</script>
+</body>
+</html>
